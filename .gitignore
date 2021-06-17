@@ -2,3 +2,6 @@ env/
 __pycache__/
 *.pyo
 *.pyc
+.vscode/
+*.sqlite3
+test/
