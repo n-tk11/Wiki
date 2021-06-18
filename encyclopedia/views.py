@@ -56,5 +56,19 @@ def CreatePage(request):
             return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
 
     return render(request,"encyclopedia/create.html", {
+        "page_title" : 'Create New page',
+        "button" : 'Create',
         "contentbox" : Create()
+    })
+
+
+def EditPage(request):
+    title = request.POST.get('title')
+    return render(request,"encyclopedia/create.html", {
+        "contentbox" : Create(initial={
+            'title' : title,
+            'content' : util.get_entry(title)
+            }),
+        'page_title' : 'Edit page',
+        'button' : 'Save'
     })
