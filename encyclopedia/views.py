@@ -7,6 +7,7 @@ from . import util
 from markdown2 import Markdown
 from django import forms
 from django.urls import reverse
+from random import randint
 
 markdowner = Markdown()
 
@@ -72,3 +73,9 @@ def EditPage(request):
         'page_title' : 'Edit page',
         'button' : 'Save'
     })
+
+def RandomPage(request):
+    entries = util.list_entries()
+    rand = randint(0, len(entries)-1)
+    entry = entries[rand]
+    return HttpResponseRedirect(reverse("encyclopedia:entry",args=[entry])) 
